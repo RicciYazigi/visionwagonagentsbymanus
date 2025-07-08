@@ -1,0 +1,43 @@
+global:
+  default_cultural_context: "global"
+  default_jurisdiction: "US"
+  default_platform_policies: ["OnlyFans", "SubscribeStar"]
+
+narrative_generation:
+  cultural_rules:
+    US:
+      - "avoid explicit underage themes"
+      - "respect local censorship laws"
+    Germany:
+      - "strict adherence to youth protection laws"
+      - "no public display of certain content"
+
+nsfw_policies:
+  OnlyFans:
+    - "no illegal content"
+    - "no non-consensual content"
+    - "no animal abuse"
+  SubscribeStar:
+    - "no illegal content"
+    - "no non-consensual content"
+
+api_keys:
+  stable_diffusion:
+    url: "https://api.stability.ai/v1/generation/stable-diffusion-v1-5/text-to-image"
+    model: "stable-diffusion-v1-5"
+  eleven_labs:
+    url: "https://api.elevenlabs.io/v1/text-to-speech/"
+    voice_id: "placeholder_voice_id"
+  reddit:
+    client_id: ""
+    client_secret: ""
+    user_agent: ""
+  twitter:
+    consumer_key: ""
+    consumer_secret: ""
+    access_token: ""
+    access_token_secret: ""
+  bitly:
+    access_token: ""
+
+

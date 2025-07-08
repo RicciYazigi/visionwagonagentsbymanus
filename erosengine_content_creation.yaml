@@ -1,0 +1,52 @@
+workflow:
+  name: ErosEngine Content Creation Workflow
+  description: Automates the creation of NSFW narrative, image, and audio content.
+  tasks:
+    - name: generate_narrative
+      agent: ErosWriterAgent
+      action: generate_narrative
+      inputs:
+        prompt: "Generate a compelling erotic narrative."
+        cultural_context: "global"
+      outputs:
+        - narrative
+
+    - name: assemble_multimedia_package
+      agent: AssemblyAgent
+      action: assemble_multimedia_package
+      inputs:
+        narrative: "{{tasks.generate_narrative.outputs.narrative}}"
+        image_urls: ["placeholder_image_url_1", "placeholder_image_url_2"]
+        audio_url: "placeholder_audio_url"
+      outputs:
+        - multimedia_package
+
+    - name: run_compliance_check
+      agent: AdultComplianceAgent
+      action: run_compliance_check
+      inputs:
+        multimedia_package: "{{tasks.assemble_multimedia_package.outputs.multimedia_package}}"
+        target_jurisdiction: "US"
+        platform_policies: ["OnlyFans", "SubscribeStar"]
+      outputs:
+        - is_compliant
+      on_fail: block_workflow
+
+    - name: generate_teaser
+      agent: TrafficCaptureAgent
+      action: generate_teaser
+      inputs:
+        multimedia_package: "{{tasks.assemble_multimedia_package.outputs.multimedia_package}}"
+      outputs:
+        - teaser
+
+    - name: distribute_and_capture_traffic
+      agent: TrafficCaptureAgent
+      action: social_media_posting
+      inputs:
+        teaser: "{{tasks.generate_teaser.outputs.teaser}}"
+        platform: "Twitter"
+      outputs:
+        - post_url
+
+
